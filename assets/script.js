@@ -77,7 +77,7 @@ function questionClick() {
       feedbackEl.setAttribute("class", "feedback hide");
     }, 2000);
     currentQuestionIndex++;
-    if (currentQuestionIndex == questions.length -1) {
+    if (currentQuestionIndex == questions.length ) {
       quizEnd();
     } else {
       getQuestion();
