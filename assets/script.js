@@ -2,7 +2,7 @@
 var questions = [
     { prompt: "Commonly used data types, DO NOT include:", answers: [" Strings", "Booleans","alerts", "numbers"], correct: "alerts" },
 
-    { prompt: "The condition in an if/else statement is enclosed within:", answers: [ "Quotes", "Curly brackets", "Parenthesis", "Square brackets"], correct: "Parenthesis" },
+    { prompt: "The condition in an if/else statement is enclosed within?:", answers: [ "Quotes", "Curly brackets", "Parenthesis", "Square brackets"], correct: "Parenthesis" },
 
     { prompt: "Arrays in Javascript can be store in?", answers: [ "numbers and strings", "other arrays", "booleans", "all of the above"], correct: "all of the above" },
 
@@ -77,7 +77,7 @@ function questionClick() {
       feedbackEl.setAttribute("class", "feedback hide");
     }, 2000);
     currentQuestionIndex++;
-    if (currentQuestionIndex == questions.length ) {
+    if (currentQuestionIndex == questions.length) {
       quizEnd();
     } else {
       getQuestion();
@@ -87,7 +87,7 @@ function questionClick() {
 function quizEnd() {
     clearInterval(timerId);
     var endScreenEl = document.getElementById("end-screen");
-    endScreenEl.removeAttribute("class");
+    endScreenEl.removeAttribute("class", "hide");
     var finalScoreEl = document.getElementById("#final-score");
     finalScoreEl.textContent = time;
     questionsEl.setAttribute("class", "hide");
