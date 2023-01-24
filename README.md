@@ -14,7 +14,7 @@ As you click the start button a timer will start and the first question appears.
 
 When all the questions are answered or the timer reaches 0, the quiz will end and it will display their score and give the user an opportunity to save their initials and their score.
 
-![screenshort] ../Code Quiz.PNG
+[!screenshort] ../Code Quiz.PNG
 ## Credits
 
 N/A
