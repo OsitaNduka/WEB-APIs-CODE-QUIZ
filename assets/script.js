@@ -19,7 +19,7 @@ var timerEl = document.querySelector(".timer");
 var choicesEl = document.querySelector("#choices");
 var submitBtn = document.querySelector(".scores");
 var startBtn = document.querySelector("#start");
-//var nameEl = document.querySelector("#name");
+var nameEl = document.querySelector(".initials");
 var feedbackEl = document.querySelector("#feedback");
 //var reStartBtn = document.querySelector("#restart");
 var wrapperEl = document.querySelector(".wrapper");
@@ -31,20 +31,26 @@ var currentQuestionIndex = 0;
 var time = questions.length *15;
 var timerId; 
 
+// function to start Quiz
+
 function quizStart() {
     timerId = setInterval(timer, 1000);
-
     startScreenEl.setAttribute("class", "hide");
     questionsEl.removeAttribute("class");
     getQuestion();
 }
 
 function timer () { 
-  time = time -1
-  console.log(time);
-  timerCounter.textContent = time
-}
+  time = time - 1;
+  //console.log(time);
+  timerCounter.textContent = time;
+  }
+
+// Star Quiz by clicking the Start Quiz button
+
 startBtn.onclick = quizStart;
+
+// Array of Questions and Answers List with buttons
 function getQuestion() {
     var currentQuestion = questions[currentQuestionIndex];
     var promptEl = document.getElementById("question-title")
@@ -77,19 +83,56 @@ function questionClick() {
       feedbackEl.setAttribute("class", "feedback hide");
     }, 2000);
     currentQuestionIndex++;
-    if (currentQuestionIndex == questions.length) {
+    if (currentQuestionIndex === questions.length) {
       quizEnd();
     } else {
       getQuestion();
     }
 }
 
+// Function to end the Quiz
+
 function quizEnd() {
     clearInterval(timerId);
     var endScreenEl = document.getElementById("end-screen");
-    endScreenEl.removeAttribute("class", "hide");
-    var finalScoreEl = document.getElementById("#final-score");
+    endScreenEl.removeAttribute("class");
+    var finalScoreEl = document.getElementById("final-score");
     finalScoreEl.textContent = time;
     questionsEl.setAttribute("class", "hide");
 }
 
+function timer () {
+  time --;
+  timerCounter.textContent = time;
+  if (time <= 0) {
+    quizEnd();
+  }
+}
+
+// Save Final score in local storage with user's Initials
+
+function saveHighscore() {
+  var initials = initials.value.trim();
+if (initials !=="") {
+  var highscores = 
+  JSON.parse(window.localStorage.getItem("highscores")) || [];
+  var newScore = {
+    score: time,
+    initials: initials
+  };
+  highscores.push(newScore);
+  window.localStorage.setItem("highscores", JSON.stringify(highscores));
+}
+}
+
+// User's final score saved by pressing enter
+
+function checkForEnter(event) {
+  if (event.key === "Enter") {
+    saveHighscore();
+  }
+}
+
+initials.onkeyup = checkForEnter;
+
+submitBtn.onclick = saveHighscore;
