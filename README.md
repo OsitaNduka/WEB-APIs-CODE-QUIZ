@@ -6,6 +6,7 @@ This is a Web APIs code quiz. As a front-end web developer bootcamp student, its
 
 I created this Web APIs code quiz to practice what I have learned from this module. It gave me the opportunity to test my knowledge on HTML, CSS and Javascript. 
 
+https://ositanduka.github.io/WEB-APIs-CODE-QUIZ/
 
 ## Usage
 
@@ -13,7 +14,7 @@ As you click the start button a timer will start and the first question appears.
 
 When all the questions are answered or the timer reaches 0, the quiz will end and it will display their score and give the user an opportunity to save their initials and their score.
 
-
+![screenshort] ../Code Quiz.PNG
 ## Credits
 
 N/A
