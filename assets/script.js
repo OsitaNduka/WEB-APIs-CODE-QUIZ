@@ -19,7 +19,7 @@ var timerEl = document.querySelector(".timer");
 var choicesEl = document.querySelector("#choices");
 var submitBtn = document.querySelector(".scores");
 var startBtn = document.querySelector("#start");
-var nameEl = document.querySelector(".initials");
+var nameEl = document.querySelector("#initials");
 var feedbackEl = document.querySelector("#feedback");
 var GoBackBtn = document.querySelector(".GoBack");
 var wrapperEl = document.querySelector(".wrapper");
@@ -115,11 +115,10 @@ function timer () {
 // Save Final score in local storage with user's Initials
 
 function submitHighScore() {
-  var initials = document.querySelector(".initials").value();
-  console.log(initials)
-if (initials !=="") {
-  var highscores = 
-  JSON.parse(window.localStorage.getItem("highscores")) || [];
+  var initials = document.querySelector("#initials").value();
+  //console.log(initials)
+if (currentQuestionIndex < newScore ) {
+  var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
   var newScore = {
     score: time,
     initials: initials
