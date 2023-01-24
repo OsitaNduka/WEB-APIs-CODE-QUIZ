@@ -21,11 +21,14 @@ var submitBtn = document.querySelector(".scores");
 var startBtn = document.querySelector("#start");
 var nameEl = document.querySelector(".initials");
 var feedbackEl = document.querySelector("#feedback");
-//var reStartBtn = document.querySelector("#restart");
+var GoBackBtn = document.querySelector(".GoBack");
 var wrapperEl = document.querySelector(".wrapper");
 var startScreenEl = document.querySelector("#start-screen");
-var endScreenEl = document.querySelector("#end-screen")
-var timerCounter = document.querySelector("#time")
+var endScreenEl = document.querySelector("#end-screen");
+var timerCounter = document.querySelector("#time");
+var scoresBtn = document.querySelector("view-high-scores");
+var highscores = document.querySelector("#highscores");
+var submitHighScore = document.querySelector("submitHighScore")
 
 var currentQuestionIndex = 0;
 var time = questions.length *15;
@@ -111,8 +114,9 @@ function timer () {
 
 // Save Final score in local storage with user's Initials
 
-function saveHighscore() {
-  var initials = initials.value.trim();
+function submitHighScore() {
+  var initials = document.querySelector(".initials").value();
+  console.log(initials)
 if (initials !=="") {
   var highscores = 
   JSON.parse(window.localStorage.getItem("highscores")) || [];
@@ -125,14 +129,35 @@ if (initials !=="") {
 }
 }
 
+onclick = "functionName()"
+
+
 // User's final score saved by pressing enter
 
 function checkForEnter(event) {
   if (event.key === "Enter") {
-    saveHighscore();
+    submitHighScore();
   }
 }
 
 initials.onkeyup = checkForEnter;
 
-submitBtn.onclick = saveHighscore;
+submitBtn.onclick = submitHighScore;
+
+//Retrieve High Scores from Local Storage in ranking order
+
+function printHighscores () {
+  var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
+  highscores.sort(function(a, b) {
+    return b.score - a.score;
+  });
+}
+
+
+function clearHighscores() {
+  window.localStorage.removeItem("highscores");
+  window.location.reload();
+}
+document.getElementById("clear").onclick = clearHighscores;
+
+printHighscores();
